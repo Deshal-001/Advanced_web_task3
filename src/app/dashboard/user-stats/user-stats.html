@@ -1,0 +1,55 @@
+<style>
+  .user-stats-card {
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-stats-card h3 {
+    color: #111827;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  .user-stats-card p {
+    color: #4B5563;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .user-stats-card strong {
+    color: #2563EB;
+    font-weight: 600;
+  }
+
+  .user-stats-card .summary {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    color: #4B5563;
+  }
+
+  .user-stats-card .description {
+    background: #F9FAFB;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #2563EB;
+    margin-top: 1rem;
+    color: #6B7280;
+    font-style: italic;
+  }
+</style>
+
+<div class="user-stats-card">
+  <h3>User Statistics</h3>
+  <p>Active users: <strong>{{ stats.activeUsers }}</strong></p>
+  <p>New messages today: <strong>{{ stats.newMessages }}</strong></p>
+  <p>Total projects: <strong>{{ stats.projects }}</strong></p>
+
+  <p class="summary">Average projects per user: <strong>{{ projectsPerUser | number:'1.2-2' }}</strong></p>
+
+  <p class="description">{{ summary }}</p>
+</div>
