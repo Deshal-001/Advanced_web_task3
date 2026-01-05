@@ -20,8 +20,6 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    // the app template now uses a minimal header and router-outlet;
-    // assert that the main nav renders the Home link
     expect(compiled.querySelector('nav a')?.textContent).toContain('Home');
   });
 });
