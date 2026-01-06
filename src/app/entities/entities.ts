@@ -10,8 +10,8 @@ import { EntityItem } from './entity-item';
   imports: [CommonModule, EntityItem],
   template: `
     <section class="entities-section">
-      <h2>Vehicles</h2>
-      <p>List of vehicles (from a service). Click a vehicle to show tyre sizes.</p>
+      <h2>Entities</h2>
+      <p>List of entities (books, products, and pets). Click an entity to view details.</p>
 
       <div class="entities-grid">
         <app-entity-item *ngFor="let e of entities" [entity]="e" (select)="onSelect($event)"></app-entity-item>
