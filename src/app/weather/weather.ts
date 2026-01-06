@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WeatherService } from '../services/weather.service';
 import { OpenMeteoResponse, CurrentWeather } from '../services/weather.model';
@@ -40,28 +40,32 @@ import { Subscription } from 'rxjs';
   ]
 })
 export class Weather implements OnInit, OnDestroy {
-    weather?: OpenMeteoResponse | null;
-    loading = false;
-    error: string | null = null;
-    private sub?: Subscription;
+  weather?: OpenMeteoResponse | null;
+  loading = false;
+  error: string | null = null;
+  private sub?: Subscription;
 
-    constructor(private svc: WeatherService) {}
+  constructor(private svc: WeatherService, private cds: ChangeDetectorRef) { }
 
-    ngOnInit() {
-      this.loading = true;
-      this.sub = this.svc.getCurrentWeather(52.52, 13.405).subscribe({
-        next: (w) => {
-          this.weather = w;
-          this.loading = false;
-        },
-        error: (err) => {
-          this.error = String(err);
-          this.loading = false;
-        }
-      });
-    }
+  ngOnInit() {
+    this.loading = true;
+    this.sub = this.svc.getCurrentWeather(52.52, 13.405).subscribe({
+      next: (w) => {
+        this.weather = w;
+        this.loading = false;
+        this.cds.markForCheck();
 
-    ngOnDestroy() {
-      this.sub?.unsubscribe();
-    }
+      },
+      error: (err) => {
+        this.error = String(err);
+        this.loading = false;
+        this.cds.markForCheck();
+
+      }
+    });
   }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
+}
