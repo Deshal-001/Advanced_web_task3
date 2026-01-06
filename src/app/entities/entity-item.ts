@@ -8,7 +8,6 @@ import { Entity } from '../services/entities.service';
   imports: [CommonModule],
   template: `
     <div class="entity" (click)="onClick()" role="button" tabindex="0">
-      <!-- Book -->
       <div *ngIf="entity.type === 'book'" class="book">
         <div class="book-head">
           <strong>{{ entity.title }}</strong>
@@ -22,7 +21,6 @@ import { Entity } from '../services/entities.service';
         </ul>
       </div>
 
-      <!-- Product -->
       <div *ngIf="entity.type === 'product'" class="product">
         <div class="product-head">
           <strong>{{ entity.name }}</strong>
@@ -38,7 +36,6 @@ import { Entity } from '../services/entities.service';
         </ul>
       </div>
 
-      <!-- Pet -->
       <div *ngIf="entity.type === 'pet'" class="pet">
         <div class="pet-head">
           <strong>{{ entity.name }}</strong>
